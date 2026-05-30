@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Алмаз тҷ - арзонтарин алмазҳои фри файр дар Тоҷикистон</title>
     <style>
-        body { font-family: sans-serif; background-color: #1a1a2e; color: #fff; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background-color: #162447; padding: 25px; border-radius: 15px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        body { font-family: sans-serif; background-color: #1a1a2e; color: #fff; margin: 0; padding: 20px; overflow-x: hidden; position: relative; }
+        .container { background-color: #162447; padding: 25px; border-radius: 15px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 0 15px rgba(0,0,0,0.5); margin: 0 auto; position: relative; z-index: 1; }
         .site-logo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #e94560; margin-bottom: 10px; }
         input, select, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #0f4c75; background: #1b262c; color: white; font-size: 15px; box-sizing: border-box; }
         input[type="file"] { padding: 12px; background-color: #162447; color: #4da8da; border: 1px dashed #00ff75; cursor: pointer; }
@@ -36,9 +36,9 @@
   top: -10vh;
   font-size: 20px;
   animation: fall linear infinite;
-  z-index: -1; /* Асосӣ: дар пушти ҳама бошад */
-  pointer-events: none; /* То ки ба тугмаҳо халал нарасонад */
-}       
+  z-index: -1;
+  pointer-events: none;
+}     
     </style>
 </head>
 <body>
@@ -273,7 +273,6 @@ startTimer();
             startTimer(); 
         }
     };   
-    // Алмосборони доимӣ
     setInterval(() => {
         const d = document.createElement('div');
         d.innerHTML = '💎';
@@ -281,10 +280,8 @@ startTimer();
         d.style.left = Math.random() * 100 + 'vw';
         d.style.animationDuration = Math.random() * 3 + 3 + 's';
         document.body.appendChild(d);
-        
-        // Барои тоза кардани хотира
         setTimeout(() => d.remove(), 6000);
-    }, 600);
+    }, 600);  
 </script>    
 </body>
 </html>
