@@ -156,8 +156,10 @@ this.innerText = "⏳ Дар ҳоли фиристодан...";
         .then(response => response.json())
         .then(data => {
             if(data.ok) {
-                document.getElementById('sendBotBtn').style.display = 'none';
-                document.getElementById('successText').style.display = 'block';
+                localStorage.setItem('timerStart', Date.now());
+localStorage.setItem('userId', document.getElementById('playerId').value);
+localStorage.setItem('userChoices', document.getElementById('diamonds').value);
+startTimer();           
             } else {
                 alert("Хатогӣ шуд. Ҳаҷми суратро санҷед ва аз нав кӯшиш кунед.");
                 this.innerText = "Тасдиқ ва Фиристодан ✅";
@@ -170,6 +172,30 @@ this.innerText = "⏳ Дар ҳоли фиристодан...";
             this.disabled = false;
         });
     });
+</script>
+<script>
+    function startTimer() {
+        document.getElementById('step1').style.display = 'none';
+        document.getElementById('paymentBox').style.display = 'block';
+        document.getElementById('sendBotBtn').style.display = 'none';
+        document.getElementById('successText').style.display = 'block';
+
+        let startTime = parseInt(localStorage.getItem('timerStart'));
+        let savedId = localStorage.getItem('userId');
+        let savedChoices = localStorage.getItem('userChoices');
+
+        const timerInterval = setInterval(() => {
+            let remaining = 300 - Math.floor((Date.now() - startTime) / 1000);
+            if (remaining > 0) {
+                document.getElementById('successText').innerHTML = `✅ Чек дар санҷиш аст.<br>Алмосҳо барои ID: <b>${savedId}</b> аз 1 то 5 дақиқа гузаронида мешаванд.<br><br>⏳ Вақти боқимонда: <b>${Math.floor(remaining/60)}:${(remaining%60).toString().padStart(2,'0')}</b>`;
+            } else {
+                clearInterval(timerInterval);
+                localStorage.clear();
+                document.getElementById('successText').innerHTML = `✅ <b>${savedChoices}</b> барои ID: <b>${savedId}</b> бо муваффақият гузаронида шуд! <br><br><a href="https://www.instagram.com/ff.tajikistan.1?igsh=NWRqajJzenJkdzVm">Барои саволҳои иловагӣ ба Instagram муроҷиат кунед.</a>`;
+            }
+        }, 1000);
+    }
+window.onload = () => { if(localStorage.getItem('timerStart')) startTimer(); };    
 </script>
 </body>
 </html>
