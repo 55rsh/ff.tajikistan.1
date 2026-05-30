@@ -99,6 +99,7 @@
     </div>
 </div>
 
+<script>
     // Намоиши "ID қабул шуд"
     document.getElementById('playerId').addEventListener('input', function() {
         if(this.value.length >= 6) {
@@ -171,6 +172,9 @@ startTimer();
             this.disabled = false;
         });
     });
+
+</script>
+<script>
     function startTimer() {
         document.getElementById('step1').style.display = 'none';
         document.getElementById('paymentBox').style.display = 'block';
