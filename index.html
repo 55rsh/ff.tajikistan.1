@@ -109,13 +109,12 @@
     });
 
     // Гузаштан ба қадами 2
-    document.getElementById('nextBtn').addEventListener('click', function() {
-        const id = document.getElementById('playerId').value;
-        const selectBox = document.getElementById('diamonds').value;
+    document.getElementById('displayUserId').innerText = id;
+    document.getElementById('displayUserChoices').innerText = selectBox;
 
-        if(id.length < 6) { alert("Лутфан ID-ро дуруст нависед!"); return; }
-        if(selectBox === "") { alert("Лутфан хизматрасониро интихоб кунед!"); return; }
-
+    document.getElementById('step1').style.display = 'none'; 
+    document.getElementById('paymentBox').style.display = 'block'; 
+});  
         document.getElementById('showId').innerText = id;
         document.getElementById('showDiamond').innerText = selectBox;
 
@@ -191,7 +190,7 @@ startTimer();
             } else {
                 clearInterval(timerInterval);
                 localStorage.clear();
-                document.getElementById('successText').innerHTML = `✅ <b>${savedChoices}</b> барои ID: <b>${savedId}</b> бо муваффақият гузаронида шуд! <br><br><a href="https://www.instagram.com/ff.tajikistan.1?igsh=NWRqajJzenJkdzVm">Барои саволҳои иловагӣ ба Instagram муроҷиат кунед.</a>`;
+                document.getElementById('successText').innerHTML = `✅ <b>${savedChoices}</b> барои ID: <b>${savedId}</b> бо муваффақият гузаронида шуд! <br><br><a href="https://www.instagram.com/ff.tajikistan.1" style="color: white;">Барои саволҳои иловагӣ ба Instagram муроҷиат кунед.</a>`;
             }
         }, 1000);
     }
