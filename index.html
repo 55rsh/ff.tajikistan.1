@@ -173,6 +173,62 @@ startTimer();
 
 </script>
 <script>
+    // 1. Намоиши "ID қабул шуд"
+    document.getElementById('playerId').addEventListener('input', function() {
+        document.getElementById('idSuccess').style.display = (this.value.length >= 6) ? 'block' : 'none';
+    });
+
+    // 2. Гузаштан ба қадами 2
+    document.getElementById('nextBtn').addEventListener('click', function() {
+        const id = document.getElementById('playerId').value;
+        const selectBox = document.getElementById('diamonds').value;
+
+        if(id.length < 6) { alert("Лутфан ID-ро дуруст нависед!"); return; }
+        if(selectBox === "") { alert("Лутфан хизматрасониро интихоб кунед!"); return; }
+
+        document.getElementById('displayUserId').innerText = id;
+        document.getElementById('displayUserChoices').innerText = selectBox;
+
+        document.getElementById('step1').style.display = 'none'; 
+        document.getElementById('paymentBox').style.display = 'block'; 
+    });
+
+    // 3. Фиристодан ба Бот
+    document.getElementById('sendBotBtn').addEventListener('click', function() {
+        const id = document.getElementById('playerId').value;
+        const pack = document.getElementById('diamonds').value;
+        const imageFile = document.getElementById('receiptImage').files[0];
+        
+        if(!imageFile) { alert("Лутфан скриншоти чекро бор кунед!"); return; }
+        
+        this.innerText = "⏳ Дар ҳоли фиристодан...";
+        this.disabled = true;
+
+        const formData = new FormData();
+        formData.append("chat_id", "6442145362");
+        formData.append("photo", imageFile);
+        formData.append("caption", "🔔 ДОНАТИ НАВ:\n\n👤 ID: " + id + "\n💎 Пакет: " + pack);
+
+        fetch("https://api.telegram.org/bot8902799657:AAGSPBqJU-1G82iocZWSx9rNB4HLT0SJdDc/sendPhoto", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.ok) {
+                localStorage.setItem('timerStart', Date.now());
+                localStorage.setItem('userId', id);
+                localStorage.setItem('userChoices', pack);
+                startTimer();           
+            } else {
+                alert("Хатогӣ шуд. Аз нав кӯшиш кунед.");
+                this.innerText = "Тасдиқ ва Фиристодан ✅";
+                this.disabled = false;
+            }
+        });
+    });
+
+    // 4. Таймер
     function startTimer() {
         document.getElementById('step1').style.display = 'none';
         document.getElementById('paymentBox').style.display = 'block';
@@ -194,19 +250,15 @@ startTimer();
             }
         }, 1000);
     }
-window.onload = () => { 
-    if(localStorage.getItem('timerStart')) {
-        startTimer(); 
-    }
-    
-    const displayId = document.getElementById('displayUserId');
-    const displayChoices = document.getElementById('displayUserChoices');
-    
-    if(displayId && displayChoices) {
-        displayId.innerText = localStorage.getItem('userId') || "Маълумот нест";
-        displayChoices.innerText = localStorage.getItem('userChoices') || "Маълумот нест";
-    }
-};    
-</script>
+
+    // 5. Оғоз ҳангоми боршавӣ
+    window.onload = () => { 
+        if(localStorage.getItem('timerStart')) {
+            document.getElementById('displayUserId').innerText = localStorage.getItem('userId');
+            document.getElementById('displayUserChoices').innerText = localStorage.getItem('userChoices');
+            startTimer(); 
+        }
+    };
+</script>    
 </body>
 </html>
