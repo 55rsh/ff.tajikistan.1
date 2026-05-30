@@ -24,20 +24,7 @@
         .success-msg { display: none; color: #00ff75; font-weight: bold; margin-top: 15px; text-align: center; font-size: 18px; }
         
         optgroup { background-color: #162447; color: #ffb037; }
-        option { color: white; }
-        @keyframes fall {
-  0% { transform: translateY(-10vh); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
-}
-.diamond {
-  position: fixed;
-  top: -10vh;
-  font-size: 20px;
-  animation: fall linear infinite;
-  z-index: -1;
-  pointer-events: none;
-}        
+        option { color: white; }    
         @keyframes fall {
   0% { transform: translateY(-10vh); opacity: 0; }
   100% { transform: translateY(100vh); opacity: 1; }
@@ -283,16 +270,7 @@ startTimer();
             document.getElementById('displayUserChoices').innerText = localStorage.getItem('userChoices');
             startTimer(); 
         }
-    };
-    setInterval(() => {
-  const d = document.createElement('div');
-  d.innerHTML = '💎';
-  d.className = 'diamond';
-  d.style.left = Math.random() * 100 + 'vw';
-  d.style.animationDuration = Math.random() * 3 + 2 + 's';
-  document.body.appendChild(d);
-  setTimeout(() => d.remove(), 5000);
-}, 500);   
+    };   
 setInterval(() => {
   const d = document.createElement('div');
   d.innerHTML = '💎';
