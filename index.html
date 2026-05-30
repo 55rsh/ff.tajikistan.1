@@ -195,7 +195,19 @@ startTimer();
             }
         }, 1000);
     }
-window.onload = () => { if(localStorage.getItem('timerStart')) startTimer(); };    
+window.onload = () => { 
+    if(localStorage.getItem('timerStart')) {
+        startTimer(); 
+    }
+    
+    const displayId = document.getElementById('displayUserId');
+    const displayChoices = document.getElementById('displayUserChoices');
+    
+    if(displayId && displayChoices) {
+        displayId.innerText = localStorage.getItem('userId') || "Маълумот нест";
+        displayChoices.innerText = localStorage.getItem('userChoices') || "Маълумот нест";
+    }
+};    
 </script>
 </body>
 </html>
