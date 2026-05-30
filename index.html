@@ -25,21 +25,20 @@
         
         optgroup { background-color: #162447; color: #ffb037; }
         option { color: white; }    
-        /* Аниматсия барои боридани алмосҳо */
+        /* Аниматсияи алмосҳо */
 @keyframes fall {
   0% { transform: translateY(-10vh); opacity: 0; }
   50% { opacity: 0.8; }
   100% { transform: translateY(100vh); opacity: 0; }
 }
-
 .diamond-falling {
   position: fixed;
   top: -10vh;
   font-size: 20px;
   animation: fall linear infinite;
-  z-index: -1; 
-  pointer-events: none;
-}        
+  z-index: -1; /* Асосӣ: дар пушти ҳама бошад */
+  pointer-events: none; /* То ки ба тугмаҳо халал нарасонад */
+}       
     </style>
 </head>
 <body>
@@ -274,18 +273,19 @@ startTimer();
             startTimer(); 
         }
     };   
-// Алмосборон дар тамоми саҳифа
-setInterval(() => {
-    const d = document.createElement('div');
-    d.innerHTML = '💎';
-    d.className = 'diamond-falling';
-    d.style.left = Math.random() * 100 + 'vw';
-    d.style.animationDuration = Math.random() * 3 + 3 + 's';
-    document.body.appendChild(d);
-    
-    // Алмосро баъд аз тамом шудани аниматсия нест мекунем
-    setTimeout(() => d.remove(), 6000);
-}, 600);  
+<script>
+    // Алмосборони доимӣ
+    setInterval(() => {
+        const d = document.createElement('div');
+        d.innerHTML = '💎';
+        d.className = 'diamond-falling';
+        d.style.left = Math.random() * 100 + 'vw';
+        d.style.animationDuration = Math.random() * 3 + 3 + 's';
+        document.body.appendChild(d);
+        
+        // Барои тоза кардани хотира
+        setTimeout(() => d.remove(), 6000);
+    }, 600);
 </script>    
 </body>
 </html>
