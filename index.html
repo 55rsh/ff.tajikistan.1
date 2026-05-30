@@ -1,175 +1,484 @@
 <!DOCTYPE html>
 <html lang="tg">
 <head> 
-    <meta name="google-site-verification" content="21QtbDlqZ8E0GKoZGa2m0ufCUdJK9C8iqfrVJxH4OT8" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Алмаз тҷ - арзонтарин алмазҳои фри файр дар Тоҷикистон</title>
-    <style>
-        body { font-family: sans-serif; background-color: #1a1a2e; color: #fff; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background-color: #162447; padding: 25px; border-radius: 15px; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
-        .site-logo { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #e94560; margin-bottom: 10px; }
-        input, select, button { width: 100%; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #0f4c75; background: #1b262c; color: white; font-size: 15px; box-sizing: border-box; }
-        input[type="file"] { padding: 12px; background-color: #162447; color: #4da8da; border: 1px dashed #00ff75; cursor: pointer; }
-        button { background-color: #ff4757; border: none; font-weight: bold; cursor: pointer; color: white; margin-top: 15px; font-size: 16px; border-radius: 10px;}
-        #paymentBox { display: none; margin-top: 10px; text-align: left; }
-        h2 { color: #ff4757; margin-bottom: 5px; margin-top: 0;}
-        
-        .warning-text { background-color: rgba(255, 71, 87, 0.1); border: 1px solid #ff4757; color: #ff4757; padding: 10px; border-radius: 8px; font-size: 13px; margin-bottom: 15px; text-align: left;}
-        .confirm-info { background-color: #1b262c; border: 1px dashed #4da8da; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .confirm-info p { margin: 5px 0; font-size: 15px; }
-        .confirm-info span { color: #00ff75; font-weight: bold; }
-        
-        #idSuccess { display: none; color: #00ff75; font-size: 13px; text-align: left; margin-top: -5px; margin-bottom: 10px; font-weight: bold; }
-        .success-msg { display: none; color: #00ff75; font-weight: bold; margin-top: 15px; text-align: center; font-size: 18px; }
-        
-        optgroup { background-color: #162447; color: #ffb037; }
-        option { color: white; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Алмаз тҷ - арзонтарин алмазҳои фри файр дар Тоҷикистон</title>
+
+<style>
+
+body{
+font-family:sans-serif;
+background-color:#1a1a2e;
+color:#fff;
+margin:0;
+padding:20px;
+display:flex;
+justify-content:center;
+}
+
+.container{
+background-color:#162447;
+padding:25px;
+border-radius:15px;
+width:100%;
+max-width:420px;
+text-align:center;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+.site-logo{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #e94560;
+margin-bottom:10px;
+}
+
+input,
+button{
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #0f4c75;
+background:#1b262c;
+color:white;
+font-size:15px;
+box-sizing:border-box;
+}
+
+button{
+background-color:#ff4757;
+border:none;
+font-weight:bold;
+cursor:pointer;
+color:white;
+margin-top:15px;
+font-size:16px;
+border-radius:10px;
+}
+
+input[type="file"]{
+padding:12px;
+background-color:#162447;
+color:#4da8da;
+border:1px dashed #00ff75;
+cursor:pointer;
+}
+
+#paymentBox{
+display:none;
+margin-top:10px;
+text-align:left;
+}
+
+h2{
+color:#ff4757;
+margin-bottom:5px;
+margin-top:0;
+}
+
+.warning-text{
+background-color:rgba(255,71,87,0.1);
+border:1px solid #ff4757;
+color:#ff4757;
+padding:10px;
+border-radius:8px;
+font-size:13px;
+margin-bottom:15px;
+text-align:left;
+}
+
+.confirm-info{
+background-color:#1b262c;
+border:1px dashed #4da8da;
+padding:15px;
+border-radius:8px;
+margin-bottom:15px;
+}
+
+.confirm-info p{
+margin:5px 0;
+font-size:15px;
+}
+
+.confirm-info span{
+color:#00ff75;
+font-weight:bold;
+white-space:pre-line;
+}
+
+#idSuccess{
+display:none;
+color:#00ff75;
+font-size:13px;
+text-align:left;
+margin-top:-5px;
+margin-bottom:10px;
+font-weight:bold;
+}
+
+.success-msg{
+display:none;
+color:#00ff75;
+font-weight:bold;
+margin-top:15px;
+text-align:center;
+font-size:18px;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#1b262c;
+padding:10px;
+border-radius:8px;
+margin-bottom:10px;
+gap:10px;
+}
+
+.item label{
+width:75%;
+text-align:left;
+font-size:14px;
+}
+
+.qty{
+width:70px;
+padding:8px;
+margin:0;
+}
+
+.category{
+color:#ffb037;
+text-align:left;
+margin-top:15px;
+margin-bottom:10px;
+font-size:18px;
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <img src="logo.webp" alt="Логотип" class="site-logo">
-    <h2>ФРИ ФАЙР ДОНАТ</h2>
-    <p style="color: #4da8da; font-size: 14px; margin-top: 0; font-weight: bold;">Инстаграм: ff.tajikistan.1</p>
 
-    <!-- ҚАДАМИ 1: ВУРУДИ МАЪЛУМОТ -->
-    <div id="step1">
-        <div class="warning-text">
-            ⚠️ <b>Диққат:</b> Айдиро дуруст ворид кунед, дар ҳолати хатогӣ админ ҷавобгӯ нест!
-        </div>
+<img src="logo.webp" alt="Логотип" class="site-logo">
 
-        <label style="text-align: left; display: block; font-weight: bold;">ID-и бозигар:</label>
-        <input type="number" id="playerId" placeholder="Масалан: 226869368" required>
-        <div id="idSuccess">✅ ID қабул шуд</div>
-        
-        <label style="text-align: left; display: block; margin-top: 10px; font-weight: bold;">Интихоби хизматрасонӣ:</label>
-        <select id="diamonds" required>
-            <option value="" disabled selected>Интихоб кунед...</option>
-            <optgroup label="💎 Алмосҳо (бо бонус)">
-                <option value="100 + (5 бонус) 💎 — 10 сомонӣ">100 + (5 бонус) 💎 — 10 см</option>
-                <option value="310 + (16 бонус) 💎 — 30 сомонӣ">310 + (16 бонус) 💎 — 30 см</option>
-                <option value="520 + (26 бонус) 💎 — 50 сомонӣ">520 + (26 бонус) 💎 — 50 см</option>
-                <option value="1060 + (53 бонус) 💎 — 100 сомонӣ">1060 + (53 бонус) 💎 — 100 см</option>
-                <option value="2180 + (218 бонус) 💎 — 200 сомонӣ">2180 + (218 бонус) 💎 — 200 см</option>
-                <option value="5600 + (560 бонус) 💎 — 460 сомонӣ">5600 + (560 бонус) 💎 — 460 см</option>
-            </optgroup>
-            <optgroup label="🎫 Ваучерҳо">
-<option value="Ваучер неделя 450 💎 — 16 сомонӣ">Ваучер неделя 450 💎 — 16 см</option>
-                <option value="Ваучер лайт 90 💎 — 6 сомонӣ">Ваучер лайт 90 💎 — 6 см</option>
-                <option value="Ваучер на месяц 2600 💎 — 90 сомонӣ">Ваучер на месяц 2600 💎 — 90 см</option>
-            </optgroup>
-            <optgroup label="⚡ Прокачка">
-                <option value="Прокачка 1270 💎✅ — 50 сомонӣ">Прокачка 1270 💎✅ — 50 см</option>
-            </optgroup>
-            <optgroup label="🆙 Прокачка аделна">
-                <option value="Ур.6 👉 120 💎✅ — 6 сомонӣ">Ур.6 👉 120 💎✅ — 6 см</option>
-                <option value="Ур.10 👉 200 💎✅ — 9 сомонӣ">Ур.10 👉 200 💎✅ — 9 см</option>
-                <option value="Ур.15 👉 200 💎✅ — 9 сомонӣ">Ур.15 👉 200 💎✅ — 9 см</option>
-                <option value="Ур.20 👉 200 💎✅ — 9 сомонӣ">Ур.20 👉 200 💎✅ — 9 см</option>
-                <option value="Ур.25 👉 200 💎✅ — 9 сомонӣ">Ур.25 👉 200 💎✅ — 9 см</option>
-                <option value="Ур.30 👉 350 💎✅ — 15 сомонӣ">Ур.30 👉 350 💎✅ — 15 см</option>
-            </optgroup>
-        </select>
-        
-        <button id="nextBtn">Давом додани пардохт</button>
-    </div>
+<h2>ФРИ ФАЙР ДОНАТ</h2>
 
-    <!-- ҚАДАМИ 2: ТАСДИҚ ВА ПАРДОХТ -->
-    <div id="paymentBox">
-        <div class="confirm-info">
-            <p>👤 Ин ID-и шумо аст: <br><span id="showId"></span></p>
-            <hr style="border: 0.5px solid #0f4c75; margin: 10px 0;">
-            <p>💎 Ин алмоси интихобкардаи шумо аст: <br><span id="showDiamond"></span></p>
-        </div>
+<p style="color:#4da8da;font-size:14px;margin-top:0;font-weight:bold;">
+Инстаграм: ff.tajikistan.1
+</p>
 
-        <p style="margin-top: 0; font-size: 15px;">Маблағро ба яке аз ин рақамҳо гузаронед:</p>
-        <div style="background-color: #1b262c; padding: 10px; border-radius: 8px; border: 1px solid #00ff75; text-align: center;">
-            <p style="margin: 0; font-size: 16px;">Alif / Dushanbe City</p>
-            <b style="font-size: 24px; letter-spacing: 2px; color: #ffb037;">907077966</b>
-        </div>
-        
-        <!-- БОР КАРДАНИ СУРАТИ ЧЕК -->
-        <label style="font-size: 15px; color: #ffb037; display: block; margin-top: 20px; font-weight: bold;">📸 Скриншоти чекро ба инҷо ворид кунед:</label>
-        <input type="file" id="receiptImage" accept="image/*" required>
-        
-        <button id="sendBotBtn" style="background-color: #00ff75; color: #1a1a2e;">Тасдиқ ва Фиристодан ✅</button>
-        <p id="successText" class="success-msg">✅ Чек ва маълумот ба боти админ равон карда шуд! Интизор шавед.</p>
-    </div>
+<div id="step1">
+
+<div class="warning-text">
+⚠️ <b>Диққат:</b> Айдиро дуруст ворид кунед, дар ҳолати хатогӣ админ ҷавобгӯ нест!
+</div>
+
+<label style="text-align:left;display:block;font-weight:bold;">
+ID-и бозигар:
+</label>
+
+<input type="number" id="playerId" placeholder="Масалан: 226869368">
+
+<div id="idSuccess">✅ ID қабул шуд</div>
+
+<div class="category">💎 Алмосҳо</div>
+
+<div id="diamonds">
+
+<div class="item">
+<label>
+<input type="checkbox" value="100 + (5 бонус) 💎 — 10 см" data-price="10">
+100 + (5 бонус) 💎 — 10 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="310 + (16 бонус) 💎 — 30 см" data-price="30">
+310 + (16 бонус) 💎 — 30 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="520 + (26 бонус) 💎 — 50 см" data-price="50">
+520 + (26 бонус) 💎 — 50 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="1060 + (53 бонус) 💎 — 100 см" data-price="100">
+1060 + (53 бонус) 💎 — 100 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="2180 + (218 бонус) 💎 — 200 см" data-price="200">
+2180 + (218 бонус) 💎 — 200 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="5600 + (560 бонус) 💎 — 460 см" data-price="460">
+5600 + (560 бонус) 💎 — 460 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="category">🎫 Ваучерҳо</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="Ваучер неделя 450 💎 — 16 см" data-price="16">
+Ваучер неделя 450 💎 — 16 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="Ваучер лайт 90 💎 — 6 см" data-price="6">
+Ваучер лайт 90 💎 — 6 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="Ваучер на месяц 2600 💎 — 90 см" data-price="90">
+Ваучер на месяц 2600 💎 — 90 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+<div class="category">⚡ Прокачка</div>
+
+<div class="item">
+<label>
+<input type="checkbox" value="Прокачка 1270 💎✅ — 50 см" data-price="50">
+Прокачка 1270 💎✅ — 50 см
+</label>
+<input type="number" min="1" value="1" class="qty">
+</div>
+
+</div>
+
+<button id="nextBtn">
+Давом додани пардохт
+</button>
+
+</div>
+
+<div id="paymentBox">
+
+<div class="confirm-info">
+
+<p>
+👤 Ин ID-и шумо аст:
+<br>
+<span id="showId"></span>
+</p>
+
+<hr style="border:0.5px solid #0f4c75;margin:10px 0;">
+
+<p>
+💎 Интихобҳои шумо:
+<br>
+<span id="showDiamond"></span>
+</p>
+
+</div>
+
+<p style="margin-top:0;font-size:15px;">
+Маблағро ба ин рақам гузаронед:
+</p>
+
+<div style="background-color:#1b262c;padding:10px;border-radius:8px;border:1px solid #00ff75;text-align:center;">
+
+<p style="margin:0;font-size:16px;">
+Alif / Dushanbe City
+</p>
+
+<b style="font-size:24px;letter-spacing:2px;color:#ffb037;">
+907077966
+</b>
+
+</div>
+
+<label style="font-size:15px;color:#ffb037;display:block;margin-top:20px;font-weight:bold;">
+📸 Скриншоти чекро ба инҷо ворид кунед:
+</label>
+
+<input type="file" id="receiptImage" accept="image/*">
+
+<button id="sendBotBtn" style="background-color:#00ff75;color:#1a1a2e;">
+Тасдиқ ва Фиристодан ✅
+</button>
+
+<p id="successText" class="success-msg">
+✅ Чек ва маълумот ба боти админ равон карда шуд!
+</p>
+
+</div>
+
 </div>
 
 <script>
-    // Намоиши "ID қабул шуд"
-    document.getElementById('playerId').addEventListener('input', function() {
-        if(this.value.length >= 6) {
-            document.getElementById('idSuccess').style.display = 'block';
-        } else {
-            document.getElementById('idSuccess').style.display = 'none';
-        }
-    });
 
-    // Гузаштан ба қадами 2
-    document.getElementById('nextBtn').addEventListener('click', function() {
-        const id = document.getElementById('playerId').value;
-        const selectBox = document.getElementById('diamonds').value;
+document.getElementById('playerId').addEventListener('input',function(){
 
-        if(id.length < 6) { alert("Лутфан ID-ро дуруст нависед!"); return; }
-        if(selectBox === "") { alert("Лутфан хизматрасониро интихоб кунед!"); return; }
+if(this.value.length >= 6){
+document.getElementById('idSuccess').style.display='block';
+}else{
+document.getElementById('idSuccess').style.display='none';
+}
 
-        document.getElementById('showId').innerText = id;
-        document.getElementById('showDiamond').innerText = selectBox;
+});
 
-        document.getElementById('step1').style.display = 'none'; 
-        document.getElementById('paymentBox').style.display = 'block'; 
-    });
+document.getElementById('nextBtn').addEventListener('click',function(){
 
-    // Фиристодани СУРАТ ба Бот
-    document.getElementById('sendBotBtn').addEventListener('click', function() {
-        const id = document.getElementById('playerId').value;
-        const pack = document.getElementById('diamonds').value;
-        const imageFile = document.getElementById('receiptImage').files[0];
-        
-        // Агар суратро бор накунад, иҷозат намедиҳад
-        if(!imageFile) { 
-            alert("Лутфан скриншоти чекро бор кунед!"); 
-            return; 
-        }
-this.innerText = "⏳ Дар ҳоли фиристодан...";
-        this.disabled = true;
+const id=document.getElementById('playerId').value;
 
-        const botToken = "8902799657:AAGSPBqJU-1G82iocZWSx9rNB4HLT0SJdDc";
-        const chatId = "6442145362";
-        
-        // Матни таги сурат (бе рақами телефон)
-        const msg = "🔔 ДОНАТИ НАВ:\n\n👤 ID: " + id + "\n💎 Пакет: " + pack;
+if(id.length < 6){
+alert("Лутфан ID-ро дуруст нависед!");
+return;
+}
 
-        const formData = new FormData();
-        formData.append("chat_id", chatId);
-        formData.append("photo", imageFile);
-        formData.append("caption", msg);
+const checked=document.querySelectorAll('#diamonds input[type="checkbox"]:checked');
 
-        fetch("https://api.telegram.org/bot" + botToken + "/sendPhoto", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.ok) {
-                document.getElementById('sendBotBtn').style.display = 'none';
-                document.getElementById('successText').style.display = 'block';
-            } else {
-                alert("Хатогӣ шуд. Ҳаҷми суратро санҷед ва аз нав кӯшиш кунед.");
-                this.innerText = "Тасдиқ ва Фиристодан ✅";
-                this.disabled = false;
-            }
-        })
-        .catch(error => {
-            alert("Интернет кор намекунад ё хатогӣ шуд.");
-            this.innerText = "Тасдиқ ва Фиристодан ✅";
-            this.disabled = false;
-        });
-    });
+if(checked.length===0){
+alert("Лутфан хизматрасониро интихоб кунед!");
+return;
+}
+
+let selectedText="";
+let total=0;
+
+checked.forEach(item=>{
+
+const qty=item.parentElement.parentElement.querySelector('.qty').value;
+
+const price=Number(item.dataset.price);
+
+selectedText += item.value + " × " + qty + "\n";
+
+total += price * qty;
+
+});
+
+document.getElementById('showId').innerText=id;
+
+document.getElementById('showDiamond').innerText=
+selectedText + "\n💰 Ҳамагӣ: " + total + " сомонӣ";
+
+document.getElementById('step1').style.display='none';
+
+document.getElementById('paymentBox').style.display='block';
+
+});
+
+document.getElementById('sendBotBtn').addEventListener('click',function(){
+
+const id=document.getElementById('playerId').value;
+
+const imageFile=document.getElementById('receiptImage').files[0];
+
+if(!imageFile){
+alert("Лутфан скриншоти чекро бор кунед!");
+return;
+}
+
+let pack="";
+let total=0;
+
+document.querySelectorAll('#diamonds input[type="checkbox"]:checked')
+.forEach(item=>{
+
+const qty=item.parentElement.parentElement.querySelector('.qty').value;
+
+const price=Number(item.dataset.price);
+
+pack += item.value + " × " + qty + "\n";
+
+total += price * qty;
+
+});
+
+this.innerText="⏳ Дар ҳоли фиристодан...";
+this.disabled=true;
+
+const botToken="ТОКЕНИ_БОТИ_ХУДАТ";
+const chatId="ID_АДМИН";
+
+const msg=
+"🔔 ДОНАТИ НАВ:\n\n"+
+"👤 ID: "+id+"\n\n"+
+"🛒 Интихобҳо:\n"+pack+"\n"+
+"💰 Ҳамагӣ: "+total+" сомонӣ";
+
+const formData=new FormData();
+
+formData.append("chat_id",chatId);
+formData.append("photo",imageFile);
+formData.append("caption",msg);
+
+fetch("https://api.telegram.org/bot"+botToken+"/sendPhoto",{
+method:"POST",
+body:formData
+})
+
+.then(response=>response.json())
+
+.then(data=>{
+
+if(data.ok){
+
+document.getElementById('sendBotBtn').style.display='none';
+
+document.getElementById('successText').style.display='block';
+
+}else{
+
+alert("Хатогӣ шуд");
+
+document.getElementById('sendBotBtn').innerText="Тасдиқ ва Фиристодан ✅";
+
+document.getElementById('sendBotBtn').disabled=false;
+
+}
+
+})
+
+.catch(error=>{
+
+alert("Интернет кор намекунад ё хатогӣ шуд");
+
+document.getElementById('sendBotBtn').innerText="Тасдиқ ва Фиристодан ✅";
+
+document.getElementById('sendBotBtn').disabled=false;
+
+});
+
+});
+
 </script>
+
 </body>
-</html>
+    </html>
